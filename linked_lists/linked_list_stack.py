@@ -25,7 +25,6 @@ class Stack:
     def pop(self):
         """
         Pops data from the head of the list
-        :param head: the reference to the head node
         :return: the head's data
         """
         if self.head is None:
@@ -60,3 +59,4 @@ stack.pop()
 print(stack)
 stack.pop()
 print(stack)
+
