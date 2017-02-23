@@ -17,13 +17,13 @@ def Reverse_Array(head):
         nodes.append(cur)
         cur = cur.next
 
-    for i in range(len(nodes)-1, -1, -1):
+    for i in range(len(nodes) - 1, -1, -1):
         if i == 0:
             nodes[i].next = None
         else:
             nodes[i].next = nodes[i - 1]
 
-    return nodes[len(nodes)-1]
+    return nodes[len(nodes) - 1]
 
 
 def Reverse_Recursive(head):
