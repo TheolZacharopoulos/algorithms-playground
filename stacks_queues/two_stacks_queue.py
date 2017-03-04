@@ -10,6 +10,8 @@ dequeue_stack, enqueue_stack = [], []
 for _ in range(int(input())):
     val = list(map(int, input().split()))
 
+    first = None
+
     if val[0] == 1:
         # if it is the first enqueue, keep the first value
         if len(enqueue_stack) == 0:
