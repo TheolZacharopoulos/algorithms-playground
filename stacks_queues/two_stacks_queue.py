@@ -1,54 +1,31 @@
 # https://www.hackerrank.com/challenges/queue-using-two-stacks
 
+# Logic :
+# Always enqueue to enqueue_stack.
+# Always dequeue from dequeue_stack (point 3 if empty).
+# Transfer all elements from enqueue_stack to dequeue_stack if dequeue_stack is empty (if need to dequeue).
 
-class TwoStackQueue:
-    def __init__(self):
-        self.temp_stack = list()
-        self.stack = list()
+dequeue_stack, enqueue_stack = [], []
 
-    def enqueue(self, data):
-        self.temp_stack.clear()
+for _ in range(int(input())):
+    val = list(map(int, input().split()))
 
-        # if the queue is empty, just add the item
-        if self.is_empty():
-            self.stack.append(data)
+    if val[0] == 1:
+        # if it is the first enqueue, keep the first value
+        if len(enqueue_stack) == 0:
+            first = val[1]
+
+        # push the value
+        enqueue_stack.append(val[1])
+
+    elif val[0] == 2:
+        if len(dequeue_stack) == 0:
+            while len(enqueue_stack) > 0:
+                dequeue_stack.append(enqueue_stack.pop())
+        dequeue_stack.pop()
+
+    else:
+        if len(dequeue_stack) > 0:
+            print(dequeue_stack[-1])
         else:
-
-            # empty stack 2 into the stack 1
-            while len(self.stack) > 0:
-                self.temp_stack.append(self.stack.pop())
-
-            # add the new item at the top
-            self.temp_stack.append(data)
-
-            # empty stack 1 back into the stack 2 (correct order)
-            while len(self.temp_stack) > 0:
-                self.stack.append(self.temp_stack.pop())
-
-    def dequeue(self):
-        return self.stack.pop()
-
-    def is_empty(self):
-        return len(self.stack) == 0
-
-    def front(self):
-        return self.stack[len(self.stack)-1]
-
-    def __str__(self):
-        return str(self.stack)
-
-n = int(input())
-
-queue = TwoStackQueue()
-
-for i in range(n):
-    inp = input().strip().split(' ')
-
-    if inp[0] == '1':
-        queue.enqueue(inp[1])
-
-    if inp[0] == '2':
-        queue.dequeue()
-
-    if inp[0] == '3':
-        print(queue.front())
+            print(first)
