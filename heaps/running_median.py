@@ -1,19 +1,33 @@
 # https://www.hackerrank.com/challenges/find-the-running-median
 
 
-class MinHeap:
+class Heap:
     def __init__(self):
         # start from element 1 (root)
         self.array = [None]
 
-    def __str__(self):
-        return str(self.array)
+    def extract_top(self):
+        pass
 
     def swap(self, index_a, index_b):
         temp = self.array[index_a]
         self.array[index_a] = self.array[index_b]
         self.array[index_b] = temp
 
+    def __str__(self):
+        return str(self.array)
+
+    def peek(self):
+        return self.array[1]
+
+    def is_empty(self):
+        return len(self.array) == 1
+
+    def size(self):
+        return len(self.array) -1
+
+
+class MinHeap(Heap):
     def swim(self, index):
         """
          Promote a node up to the binary tree
@@ -52,7 +66,7 @@ class MinHeap:
 
             index = smaller_child
 
-    def del_min(self):
+    def extract_top(self):
         # root is always the min
         min_element = self.array[1]
 
@@ -65,29 +79,8 @@ class MinHeap:
 
         return min_element
 
-    def peek(self):
-        return self.array[1]
 
-    def is_empty(self):
-        return len(self.array) == 1
-
-    def size(self):
-        return len(self.array) -1
-
-
-class MaxHeap:
-    def __init__(self):
-        # start from element 1 (root)
-        self.array = [None]
-
-    def __str__(self):
-        return str(self.array)
-
-    def swap(self, index_a, index_b):
-        temp = self.array[index_a]
-        self.array[index_a] = self.array[index_b]
-        self.array[index_b] = temp
-
+class MaxHeap(Heap):
     def swim(self, index):
         """
          Promote a node up to the binary tree
@@ -126,7 +119,7 @@ class MaxHeap:
 
             index = smaller_child
 
-    def del_max(self):
+    def extract_top(self):
         # root is always the max
         max_element = self.array[1]
 
@@ -139,78 +132,59 @@ class MaxHeap:
 
         return max_element
 
-    def peek(self):
-        return self.array[1]
 
-    def size(self):
-        return len(self.array) - 1
+class RunningMedian:
+    def __init__(self):
+        self.min_heap = MinHeap()
+        self.max_heap = MaxHeap()
 
-
-def get_median(e, m, l, r):
-    """
-    We can use a max heap on left side to represent elements that are less than effective median,
-    and a min heap on right side to represent elements that are greater than effective median.
-    After processing an incoming element, the number of elements in heaps differ utmost by 1 element.
-    When both heaps contain same number of elements, we pick average of heaps root data as effective median.
-    When the heaps are not balanced, we select effective median from the root of heap containing more elements.
-    """
-
-    # The left and right heaps contain same number of elements
-    if l.size() == r.size():
-
-        # current element fits in left (max) heap
-        if e < m:
-            l.insert(e)
-            m = l.peek()
+    def add(self, item):
+        """
+        If the item is greater than or equal to the max element of the max heap
+        it surely belongs to the min heap, otherwise to the max heap.
+        """
+        if self.max_heap.size() > 0 and item >= self.max_heap.peek():
+            self.min_heap.insert(item)
         else:
-            # current element fits in right(min) heap
-            r.insert(e)
-            m = r.peek()
+            self.max_heap.insert(item)
 
-    # There are more elements in left (max) heap
-    elif l.size() > r.size():
+        # Balance the heaps (keep the the same size)
+        if abs(self.max_heap.size() - self.min_heap.size()) > 1:
+            if self.max_heap.size() > self.min_heap.size():
+                self.min_heap.insert(self.max_heap.extract_top())
+            else:
+                self.max_heap.insert(self.min_heap.extract_top())
 
-        # current element fits in left (max) heap
-        if e < m:
-            # Remove top element from left heap and
-            # insert into right heap
-            r.insert(l.del_max())
+    def get_median(self):
+        total = self.min_heap.size() + self.max_heap.size()
 
-            # current element fits in left (max) heap
-            l.insert(e)
+        # it is even
+        if total % 2 == 1:
+            if self.max_heap.size() > self.min_heap.size():
+                return self.max_heap.peek()
+            else:
+                return self.min_heap.peek()
+
+        # it is odd
         else:
-            # current element fits in right (min) heap
-            r.insert(e)
+            ret = 0
+            if not self.max_heap.is_empty():
+                ret += self.max_heap.peek()
 
-        # Both heaps are balanced
-        m = (l.peek() + r.peek()) / 2
+            if not self.min_heap.is_empty():
+                ret += self.min_heap.peek()
 
-    # There are more elements in right (min) heap
-    elif r.size() > l.size():
-        # current element fits in left (max) heap
-        if e < m:
-            l.insert(e)
-        else:
-            # Remove top element from right heap and
-            # insert into left heap
-            l.insert(r.del_min())
+            ret /= 2
 
-            # current element fits in right (min) heap
-            r.insert(e)
-
-        # Both heaps are balanced
-        m = (l.peek() + r.peek()) / 2
-
-    return m
+            return ret
 
 
-left = MaxHeap()
-right = MinHeap()
-median = float("inf")
+running_median = RunningMedian()
 
 n = int(input().strip())
 
 for i in range(n):
     elem = int(input().strip())
-    median = get_median(elem, median, left, right)
+    running_median.add(elem)
+    median = running_median.get_median()
     print("%2.1f" % median)
