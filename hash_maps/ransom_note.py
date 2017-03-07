@@ -10,3 +10,27 @@
 # otherwise, print No.
 
 
+def ransom_note(mag, note):
+    freq = {}
+
+    for mag_word in mag:
+        freq[mag_word] = 1 + freq.get(mag_word, 0)
+
+    for note_word in note:
+        if freq.get(note_word, 0) < 1:
+            return False
+        else:
+            freq[note_word] = freq.get(note_word) - 1
+
+    return True
+
+m, n = map(int, input().strip().split(' '))
+magazine = input().strip().split(' ')
+ransom = input().strip().split(' ')
+
+answer = ransom_note(magazine, ransom)
+
+if answer:
+    print("Yes")
+else:
+    print("No")
