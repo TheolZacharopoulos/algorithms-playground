@@ -13,5 +13,11 @@ class BSTNode:
     def get_data(self):
         return self._data
 
+    def set_right(self, node):
+        self._right = node
+
+    def set_left(self, node):
+        self._right = node
+
     def __str__(self):
         return str(self._data)
