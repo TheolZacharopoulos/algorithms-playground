@@ -20,7 +20,7 @@ def top_view(root):
     if root.get_left() is not None:
         go_left(root.get_left())
 
-    print(str(root.get_dadvta()) + " ", end='')
+    print(str(root.get_data()) + " ", end='')
 
     if root.get_right() is not None:
         go_right(root.get_right())
