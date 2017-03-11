@@ -19,5 +19,5 @@ def to_BST(nums, low, high):
         return n
 
 
-array = [1, 2, 3, 4, 5, 6, 7, 8]
+array = [1, 2, 3, 4, 5, 6, 7]
 t = sorted_array_to_BST(array)

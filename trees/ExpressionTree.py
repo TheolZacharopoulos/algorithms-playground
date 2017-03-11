@@ -55,12 +55,16 @@ class ExpressionTree(LinkedBinaryTree):
             op = p.element()
             left_val = self._evaluate_recur(self.left(p))
             right_val = self._evaluate_recur(self.right(p))
+
             if op == '+':
                 return left_val + right_val
+
             elif op == '-':
                 return left_val - right_val
+
             elif op == '/':
                 return left_val / right_val
+
             else:  # treat 'x' or '*' as multiplication
                 return left_val * right_val
 
@@ -88,16 +92,21 @@ def tokenize(raw):
 
 
 def build_expression_tree(tokens):
-    """Returns an ExpressionTree based upon by a tokenized expression.
-  tokens must be an iterable of strings representing a fully parenthesized
-  binary expression, such as ['(', '43', '-', '(', '3', '*', '10', ')', ')']
-  """
+    """
+    Returns an ExpressionTree based upon by a tokenized expression.
+    tokens must be an iterable of strings representing a fully parenthesized
+    binary expression, such as ['(', '43', '-', '(', '3', '*', '10', ')', ')']
+    """
+
     S = []  # we use Python list as stack
+
     for t in tokens:
         if t in '+-x*/':  # t is an operator symbol
             S.append(t)  # push the operator symbol
+
         elif t not in '()':  # consider t to be a literal
             S.append(ExpressionTree(t))  # push trivial tree storing value
+
         elif t == ')':  # compose a new tree from three constituent parts
             right = S.pop()  # right subtree as per LIFO
             op = S.pop()  # operator symbol
