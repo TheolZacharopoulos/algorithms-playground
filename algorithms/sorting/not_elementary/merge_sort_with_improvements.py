@@ -14,37 +14,30 @@ from algorithms.sorting.not_elementary.merge_sort import merge
 CUTOFF = 7
 
 
-def sort(array, aux, low, high):
-    # IMPROVEMENT 1
-    if high <= low + CUTOFF - 1:
+def merge_sort(array):
+    n = len(array)
+
+    if n == CUTOFF:
         return insertion_sort(array)
 
-    # check if end
-    if high <= low:
+    if n < 2:
         return array
 
-    # find the mid point
-    mid = int(low + (high - low) / 2)
+    # divide
+    mid = n // 2
+    array_low = array[0: mid]
+    array_high = array[mid: n]
 
-    # sort the left half
-    sort(array, aux, low, mid)
-
-    # sort the right half
-    sort(array, aux, mid + 1, high)
+    # conquer (with recursion)
+    merge_sort(array_low)
+    merge_sort(array_high)
 
     # IMPROVEMENT 2:
-    if not array[mid + 1] < array[mid]:
-        return array
+    # if array_low[-1] <= array_high[0]:
+    #     return array
 
-    # merge them together
-    merge(array, aux, low, mid, high)
-
-    return array
-
-
-def merge_sort(array):
-    aux = [0] * len(array)
-    return sort(array, aux, 0, len(array) - 1)
+    # merge results
+    return merge(array_low, array_high, array)
 
 
 if __name__ == "__main__":

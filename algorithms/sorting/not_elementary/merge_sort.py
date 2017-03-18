@@ -15,67 +15,41 @@
 # - It is very hard to do an in-place merge
 
 
-def merge(array, aux, low, mid, high):
-    # Precondition: arr[low..mid] is sorted
-    # Precondition: arr[mid+1..high] is sorted
-
-    # copy all the elements into an auxiliary array
-    for k in range(low, high):
-        aux[k] = array[k]
-
-    i = low
-    j = mid + 1
-
-    # accomplish the merging
-    for k in range(low, high):
-
-        # if the first part is exhausted, move the next j element
-        if i > mid:
-            array[k] = aux[j]
-            j += 1
-
-        # if the second part is exhausted, move the next j element
-        elif j > high:
-            array[k] = aux[i]
+def merge(array_low, array_high, merged_arr):
+    """Merge two sorted Python lists S1 and S2 into properly sized list S."""
+    i = j = 0
+    while i + j < len(merged_arr):
+        if j == len(array_high) or (i < len(array_low) and array_low[i] < array_high[j]):
+            merged_arr[i+j] = array_low[i]
             i += 1
-
-        # if the element in second part is larger than the element on the first part, copy this
-        elif array[j] > array[i]:
-            array[k] = aux[j]
-            j += 1
-
-        # if the element in first part is larger than the element on the second part, copy this
         else:
-            array[k] = aux[i]
-            i += 1
+            merged_arr[i+j] = array_high[j]
+            j += 1
 
-    # Post-condition: arr[low..high] is sorted
-
-
-def sort(array, aux, low, high):
-    # check if end
-    if high <= low:
-        return array
-
-    # find the mid point
-    mid = int(low + (high - low) / 2)
-
-    # sort the left half
-    sort(array, aux, low, mid)
-
-    # sort the right half
-    sort(array, aux, mid + 1, high)
-
-    # merge them together
-    merge(array, aux, low, mid, high)
-
-    return array
+    return merged_arr
 
 
 def merge_sort(array):
-    aux = [0] * len(array)
-    return sort(array, aux, 0, len(array) - 1)
+    """Sort the elements of Python list S using the merge-sort algorithm."""
+    n = len(array)
+
+    if n < 2:
+        return array
+
+    # divide
+    mid = n // 2
+    array_low = array[0: mid]
+    array_high = array[mid: n]
+
+    # conquer (with recursion)
+    merge_sort(array_low)
+    merge_sort(array_high)
+
+    # merge results
+    return merge(array_low, array_high, array)
 
 
 if __name__ == "__main__":
-    print(merge_sort([5, 4, 2, 1, 3]))
+    a = [5, 4, 2, 1, 3, 8, 6]
+    print(a)
+    print(merge_sort(a))
