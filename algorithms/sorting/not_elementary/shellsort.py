@@ -34,4 +34,6 @@ def shell_sort(array):
 
     return array
 
-print(shell_sort([5, 4, 2, 1, 3]))
+
+if __name__ == "__name__":
+    print(shell_sort([5, 4, 2, 1, 3]))
