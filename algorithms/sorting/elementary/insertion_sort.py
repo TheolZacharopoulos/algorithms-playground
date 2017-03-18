@@ -35,5 +35,5 @@ def insertion_sort(array):
 
     return array
 
-
-print(insertion_sort([5, 4, 2, 1, 3]))
+if __name__ == "__main__":
+    print(insertion_sort([5, 4, 2, 1, 3]))

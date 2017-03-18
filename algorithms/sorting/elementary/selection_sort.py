@@ -59,6 +59,6 @@ def selection_sort_recursive(array, start):
     else:
         return array
 
-
-print(selection_sort([5, 4, 2, 1, 3]))
-print(selection_sort_recursive_wrap([5, 4, 2, 1, 3]))
+if __name__ == "__main__":
+    print(selection_sort([5, 4, 2, 1, 3]))
+    print(selection_sort_recursive_wrap([5, 4, 2, 1, 3]))

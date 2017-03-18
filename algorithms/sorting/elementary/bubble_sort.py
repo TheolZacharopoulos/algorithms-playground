@@ -17,7 +17,7 @@ def bubble_sort(array):
     last_unsorted = len(array) - 1
 
     while not is_sorted:
-        # Assume not sorted
+        # Assume it is sorted
         is_sorted = True
 
         for i in range(last_unsorted):
@@ -33,4 +33,5 @@ def bubble_sort(array):
         last_unsorted -= 1
     return array
 
-print(bubble_sort([5, 4, 2, 1, 3]))
+if __name__ == "__main__":
+    print(bubble_sort([5, 4, 2, 1, 3]))

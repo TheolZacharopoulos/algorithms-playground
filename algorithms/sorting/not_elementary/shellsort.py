@@ -35,5 +35,5 @@ def shell_sort(array):
     return array
 
 
-if __name__ == "__name__":
+if __name__ == "__main__":
     print(shell_sort([5, 4, 2, 1, 3]))
