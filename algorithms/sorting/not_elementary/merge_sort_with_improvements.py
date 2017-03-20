@@ -32,8 +32,8 @@ def merge_sort(array):
     merge_sort(array_low)
     merge_sort(array_high)
 
-    # IMPROVEMENT 2:
-    # if array_low[-1] <= array_high[0]:
+    # IMPROVEMENT 2 (Already sorted):
+    # if array[mid-1] < array[mid]:
     #     return array
 
     # merge results
@@ -44,3 +44,4 @@ if __name__ == "__main__":
     print(merge_sort([5, 4, 2, 1, 3, 11, 14, 27, 35, 35, 25, 6, 34, 23, 6, 88, 345]))
     print(merge_sort([5, 4, 2, 1, 3]))
     print(merge_sort([8, 5, 3, 4, 9, 7, 12, 13, 14]))
+    print(merge_sort([1, 2, 3, 4, 5, 6]))
