@@ -35,5 +35,19 @@ def insertion_sort(array):
 
     return array
 
+
+# In place swap, faster
+def ins_sort_no_swap(array):
+    for i in range(len(array)):
+        temp = array[i]
+        j = i - 1
+        while j >= 0 and array[j] > temp:
+            array[j + 1] = array[j]
+            j -= 1
+        array[j + 1] = temp
+    return array
+
+
 if __name__ == "__main__":
     print(insertion_sort([5, 4, 2, 1, 3]))
+    print(ins_sort_no_swap([5, 4, 2, 1, 3]))
