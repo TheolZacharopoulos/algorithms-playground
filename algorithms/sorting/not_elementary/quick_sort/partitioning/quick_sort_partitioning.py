@@ -23,26 +23,30 @@ def swap(arr, i, j):
     arr[j] = temp
 
 
-def partition(a, lo, hi):
-    i = lo + 1
-    j = hi
+def partition(array, lo, hi):
+    left = lo + 1
+
+    right = hi
 
     while True:
-        while a[i] < a[lo]:
-            if i == hi:
-                break
-            i += 1
+        while left <= right and array[left] < array[lo]:
+            left += 1
 
-        while a[lo] < a[j]:
-            if j == lo:
-                break
-            j -= 1
+        while left <= right and array[right] > array[lo]:
+            right -= 1
 
-        if i >= j:
+        # scans did not strictly cross
+        if left <= right:
+            swap(array, left, right)
+            left += 1
+            right -= 1
+
+        # pointers crossed
+        if left >= right:
+            swap(array, lo, right)
             break
-        swap(a, i, j)
-    swap(a, lo, j)
-    return j
+
+    return right
 
 
 def _quick_sort(arr, lo, hi):
