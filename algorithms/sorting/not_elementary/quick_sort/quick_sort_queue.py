@@ -11,6 +11,8 @@ from data_structures.stacks_queues.queues.linked_queue import LinkedQueue
 
 # Best case:
 # - L, E, G be almost similar size: then O(n log n)
+# Similar to mergesort, however quicksort just compares and increments an index,
+# while merge sort copies values around (aux and back).
 
 
 def quick_sort(a_queue):
