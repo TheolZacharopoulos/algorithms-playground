@@ -4,7 +4,15 @@
 #  - entry a[j] is in place
 #  - No larger entry to the left of j
 #  - No smaller entry to the right of j
-# 3. Sort each piece recursively    
+# 3. Sort each piece recursively
+
+# Partition Details:
+# 1. While i and j are not crossed:
+#    - Scan i from left to right while a[i] < a[low]
+#    - Scan j from right to left while a[j] > a[low]
+#    - Swap a[i] and a[j]
+# 2. When pointers crossed
+#    - Swap a[low] and a[j]
 
 from random import shuffle
 
