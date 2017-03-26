@@ -17,14 +17,17 @@
 
 def merge(array_low, array_high, merged_arr):
     """Merge two sorted Python lists S1 and S2 into properly sized list S."""
-    i = j = 0
-    while i + j < len(merged_arr):
-        if j == len(array_high) or (i < len(array_low) and array_low[i] < array_high[j]):
-            merged_arr[i+j] = array_low[i]
-            i += 1
+    low_index = 0
+    high_index = 0
+
+    while low_index + high_index < len(merged_arr):
+        if high_index == len(array_high) or \
+                (low_index < len(array_low) and array_low[low_index] < array_high[high_index]):
+            merged_arr[low_index + high_index] = array_low[low_index]
+            low_index += 1
         else:
-            merged_arr[i+j] = array_high[j]
-            j += 1
+            merged_arr[low_index + high_index] = array_high[high_index]
+            high_index += 1
 
     return merged_arr
 
