@@ -25,10 +25,9 @@ def swap(arr, i, j):
 
 def partition(array, lo, hi):
     left = lo + 1
-
     right = hi
 
-    while True:
+    while left < right:
         while left <= right and array[left] < array[lo]:
             left += 1
 
@@ -41,10 +40,8 @@ def partition(array, lo, hi):
             left += 1
             right -= 1
 
-        # pointers crossed
-        if left >= right:
-            swap(array, lo, right)
-            break
+    # pointers crossed
+    swap(array, lo, right)
 
     return right
 
@@ -56,6 +53,7 @@ def _quick_sort(arr, lo, hi):
     j = partition(arr, lo, hi)
     _quick_sort(arr, lo, j - 1)
     _quick_sort(arr, j + 1, hi)
+    print(arr[lo:hi])
 
 
 def quick_sort(array):

@@ -27,12 +27,6 @@ def divide_extraspace(array):
     return left + equal + right
 
 
-def swap(arr, i, j):
-    temp = arr[i]
-    arr[i] = arr[j]
-    arr[j] = temp
-
-
 def divide_inplace(array):
     """
     Partition Details:
@@ -52,7 +46,7 @@ def divide_inplace(array):
     hi = len(array) - 1
     right = hi
 
-    while True:
+    while left < right:
         while left <= right and array[left] < array[low]:
             left += 1
 
@@ -61,14 +55,13 @@ def divide_inplace(array):
 
         # scans did not strictly cross
         if left <= right:
-            swap(array, left, right)
+            # swap
+            array[left], array[right] = array[right], array[left]
             left += 1
             right -= 1
 
-        # pointers crossed
-        if left >= right:
-            swap(array, low, right)
-            break
+    # pointers crossed, swap
+    array[low], array[right] = array[right], array[low]
 
     return array
 
