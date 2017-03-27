@@ -16,12 +16,6 @@
 # Stable
 
 
-def swap(arr, i, j):
-    temp = arr[i]
-    arr[i] = arr[j]
-    arr[j] = temp
-
-
 def insertion_sort(array):
     # move th pointer to the right
     for i in range(len(array)):
@@ -29,7 +23,7 @@ def insertion_sort(array):
         # put it on the right order
         for j in range(i, 0, -1):
             if array[j] < array[j - 1]:
-                swap(array, j, j-1)
+                array[j], array[j-1] = array[j-1], array[j]
             else:
                 break
 

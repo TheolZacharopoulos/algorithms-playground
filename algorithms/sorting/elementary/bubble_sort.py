@@ -2,14 +2,7 @@
 #     walk through           <- O(N) time
 #     swap out of order elements
 #
-#
 # So O(N^2) time and O(1) space
-
-
-def swap(arr, i, j):
-    temp = arr[i]
-    arr[i] = arr[j]
-    arr[j] = temp
 
 
 def bubble_sort(array):
@@ -24,7 +17,7 @@ def bubble_sort(array):
             if array[i] > array[i + 1]:
 
                 # swap the two values
-                swap(array, i, i + 1)
+                array[i], array[i + 1] = array[i + 1], array[i]
 
                 # hey it is not sorted yet
                 is_sorted = False
