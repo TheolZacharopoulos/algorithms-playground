@@ -1,5 +1,5 @@
 # https://www.hackerrank.com/challenges/binary-search-tree-lowest-common-ancestor
-from data_structures.binary_trees import BSTNode
+from data_structures.binary_trees.bst_operations.BST import BSTNode
 
 
 def lca(root, v1, v2):

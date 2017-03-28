@@ -1,6 +1,6 @@
 # https://www.hackerrank.com/challenges/tree-inorder-traversal
 # http://stackoverflow.com/a/2116755/4060931
-from data_structures.binary_trees import BSTNode
+from data_structures.binary_trees.bst_operations.BST import BSTNode
 
 
 def in_order_recursive(root):
@@ -31,6 +31,7 @@ def in_order_iterative(n):
         # get the right, and if there is:
         # put it in stack and get its left
         v = v.get_right()
+
         while v is not None:
             stack.append(v)
             v = v.get_left()

@@ -1,5 +1,5 @@
 # https://www.hackerrank.com/challenges/tree-level-order-traversal
-from data_structures.binary_trees import BSTNode
+from data_structures.binary_trees.bst_operations.BST import BSTNode
 
 
 def level_order_traversal_iterative(root):

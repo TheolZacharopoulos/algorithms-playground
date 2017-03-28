@@ -1,6 +1,6 @@
 # Given an array where elements are sorted in ascending order, convert it to a height balanced BST.
 # Time complexity O(n)
-from data_structures.binary_trees import BSTNode
+from data_structures.binary_trees.bst_operations.BST import BSTNode
 
 
 def sorted_array_to_BST(nums):

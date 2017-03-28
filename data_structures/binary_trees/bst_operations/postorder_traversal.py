@@ -1,5 +1,5 @@
 # https://www.hackerrank.com/challenges/tree-postorder-traversal
-from data_structures.binary_trees import BSTNode
+from data_structures.binary_trees.bst_operations.BST import BSTNode
 
 
 def post_order_recursive(root):

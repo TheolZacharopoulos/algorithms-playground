@@ -1,5 +1,5 @@
 # https://www.hackerrank.com/challenges/binary-search-tree-insertion
-from data_structures.binary_trees import BSTNode
+from data_structures.binary_trees.bst_operations.BST import BSTNode
 
 
 def insert_rec(root, value):
