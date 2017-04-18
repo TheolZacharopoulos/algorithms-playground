@@ -1,5 +1,5 @@
 # https://www.hackerrank.com/challenges/tree-top-view
-from data_structures.binary_trees import BSTNode
+from data_structures.binary_trees.bst_operations.BST import BSTNode
 
 
 def go_left(node):
