@@ -36,6 +36,9 @@ def dfs_it(graph, source, dest):
         if v == dest:
             return True
 
+        if v in visited:
+            continue
+
         visited.append(v)
 
         for n in graph.incident_edges(v):
