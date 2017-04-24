@@ -33,16 +33,25 @@ def int_to_str(num):
     if num < 0:
         is_negative = True
 
-    string += str(abs(num) % 10)
-    num = int(abs(num) / 10)
+    # now we only need the absolute number
+    num = abs(num)
+
+    # get last digit
+    string += str(num % 10)
+    # eliminate last digit (we got it already)
+    num = int(num / 10)
 
     while num != 0:
-        string += str(abs(num) % 10)
-        num = int(abs(num) / 10)
+        # get last digit
+        string += str(num % 10)
+        # eliminate last digit (we got it already)
+        num = int(num / 10)
 
+    # append '-' in case it is a negative number
     if is_negative:
         string += '-'
 
+    # return string on reverse
     return string[::-1]
 
 
