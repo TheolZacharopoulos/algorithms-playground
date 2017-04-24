@@ -27,7 +27,23 @@ def str_to_int(string):
 
 
 def int_to_str(num):
-    pass
+    string = ""
+    is_negative = False
+
+    if num < 0:
+        is_negative = True
+
+    string += str(abs(num) % 10)
+    num = int(abs(num) / 10)
+
+    while num != 0:
+        string += str(abs(num) % 10)
+        num = int(abs(num) / 10)
+
+    if is_negative:
+        string += '-'
+
+    return string[::-1]
 
 
 assert str_to_int("0") == 0
@@ -36,7 +52,7 @@ assert str_to_int("-1") == -1
 assert str_to_int("123") == 123
 assert str_to_int("-123") == -123
 
-# assert int_to_str(1) == "1"
-# assert int_to_str(-1) == "-1"
-# assert int_to_str(123) == "123"
-# assert int_to_str(-123) == "-123"
+assert int_to_str(1) == "1"
+assert int_to_str(-1) == "-1"
+assert int_to_str(123) == "123"
+assert int_to_str(-123) == "-123"
