@@ -1,4 +1,4 @@
-def is_anagram(word):
+def is_palidrome(word):
     j = len(word) - 1
     i = 0
 
@@ -11,5 +11,5 @@ def is_anagram(word):
 
 
 if __name__ == '__main__':
-    print(is_anagram("hello"))
-    print(is_anagram("anna"))
+    print(is_palidrome("hello"))
+    print(is_palidrome("anna"))
