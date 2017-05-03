@@ -4,10 +4,9 @@
 def count_sos(string):
     sos_num = 0
 
-    i = 1
     s = list(string)
 
-    while i < len(s):
+    for i in range(1, len(s), 3):
         if s[i-1] != 'S':
             sos_num += 1
 
@@ -16,8 +15,6 @@ def count_sos(string):
 
         if s[i + 1] != 'S':
             sos_num += 1
-
-        i += 3
 
     return sos_num
 
