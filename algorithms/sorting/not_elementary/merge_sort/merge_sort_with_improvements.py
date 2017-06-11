@@ -9,7 +9,7 @@
 #  - Almost linear time
 
 from algorithms.sorting.elementary.insertion_sort import insertion_sort
-from algorithms.sorting.not_elementary.merge_sort import merge
+from algorithms.sorting.not_elementary.merge_sort.merge_sort import merge
 
 CUTOFF = 7
 
