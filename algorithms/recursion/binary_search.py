@@ -32,5 +32,5 @@ def binary_search(arr, value):
 
 
 array = [1, 2, 3, 4, 5, 6, 7]
-print(binary_search_rec(array, 5, 0, len(array)))
+print(binary_search_rec(array, 5, 0, len(array)-1))
 print(binary_search(array, 5))

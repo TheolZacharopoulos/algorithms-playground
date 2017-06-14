@@ -75,15 +75,26 @@ class RankNode:
                 return self.left_size + 1 + right_rank
 
 
-root = None
-
-
-def track(number):
+def track(number, root):
     if root is None:
         return RankNode(number)
     else:
         root.insert(number)
 
 
-def get_rank_of_num(number):
+def get_rank_of_num(number, root):
     return root.get_rank(number)
+
+
+if __name__ == '__main__':
+    r = RankNode(5)
+    # track(5, r)
+    track(15, r)
+    track(10, r)
+    track(20, r)
+    track(25, r)
+    track(13, r)
+    track(23, r)
+    track(24, r)
+
+    print(get_rank_of_num(24, r))
